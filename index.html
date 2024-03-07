@@ -1,0 +1,313 @@
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
+<style>
+    @import url('https://fonts.cdnfonts.com/css/chalkduster');
+</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<!-- If you need support for additional languages, include them here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link href="style.css" rel="stylesheet"/>
+<link href="fontawesome.all.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<script defer src="fontawesome.all.min.js"></script>
+
+
+<html>
+  <head>
+		<title>A Simple and Effective Pruning Approach for Large Language Models</title>
+		<meta property="og:title" content="A Simple and Effective Pruning Approach for Large Language Models." />
+
+  </head>
+
+  <body>
+    <br>
+        <center>
+			  <span class="near-black" style="font-size:36px;font-weight:bold">A Simple and Effective Pruning Approach for</span>
+			  <br>
+			  <span class="near-black" style="font-size:36px;font-weight:bold">Large Language Models</span>
+			  <br>
+			  <br>
+
+
+	  		<table align=center width=800px>
+	  			<tr>
+	  	        <td align=center width=150px>
+	  				<center>
+	  					<span style="font-size:24px"><a href="https://eric-mingjie.github.io/">Mingjie Sun</a>*
+						<sup style="font-size: 0.7em;left: -0.3em">1</sup>
+						</span>
+		  			</center>
+		  		</td>
+	  	        <td align=center width=150px>
+	  				<center>
+	  					<span style="font-size:24px"><a href="https://liuzhuang13.github.io/">Zhuang Liu</a>*
+						  <sup style="font-size: 0.7em;left: -0.3em">2</sup>
+						</span>
+		  			</center>
+		  		</td>
+	  	        <td align=center width=150px>
+	  				<center>
+	  					<span style="font-size:24px"><a href="https://annaebair.github.io/">Anna Bair</a>
+						  <sup style="font-size: 0.7em;left: -0.3em">1</sup>
+						</span>
+		  			</center>
+		  		</td>
+                <td align=center width=150px>
+                    <center>
+                        <span style="font-size:24px"><a href="http://zicokolter.com/">J. Zico Kolter</a>
+						<sup style="font-size: 0.7em;left: -0.3em">1,3</sup>
+						</span>
+                    </center>
+                </td>
+			</table>
+			<table align="center" width="600px">
+				<tbody>
+					<tr>
+						<td style="padding:10px">
+							<sup style="padding-right: 3px;font-size: 18px;top: -1.4em;">1</sup><img style="height:40px" src="./webpage_assets/cmu.png">
+						</td>
+						<td style="padding:10px">
+							<sup style="padding-right: 3px;font-size: 18px;top: -1.4em;">2</sup><img style="height:40px" src="./webpage_assets/meta.png">
+						</td>
+						<td style="padding:10px">
+							<sup style="padding-right: 3px;font-size: 18px;top: -1.4em;">3</sup><img style="height:40px" src="./webpage_assets/bosch.png">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		  <table align="center" width="500px">
+            <tbody>
+                <tr>
+                    <td align="center" width="500px">
+                        <center>
+                            <i><span style="font-size:14px; font-weight: 200">* Equal contribution</span></i>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="800" border="0" align="center" class="menu"
+            style="margin-bottom: 20px;margin-top: 20px;font-weight: bold;font-size: 20px;">
+            <tbody>
+                <tr>
+                    <td align="center">
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:26px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://arxiv.org/abs/2306.11695" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-file-pdf" aria-hidden="true"></i>
+							Paper
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:26px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/locuslab/wanda"" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fab fa-github" aria-hidden="true"></i>
+							Code
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:26px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://twitter.com/_mingjiesun/status/1674863399052750848"" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fab fa-twitter" aria-hidden="true"></i>
+							Summary
+							</a>
+						</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+	</center>
+		<br>
+
+		  <table align=center width=1000px>
+			<tr>
+				<td align=center width=1300px>
+				  <center>
+					  <img class="round" style="width:1000px" src="wanda.png"/>
+				  </center>
+				</td>
+			</tr>
+		</table>
+
+		<p>
+				Compared to magnitude pruning which removes weights solely based on their magnitudes, our proposed method <b>Wanda (Pruning by Weights and activations)</b> removes weights on a per-output basis, by the product of weight magnitudes and input activation norms.
+		</p>
+	      <hr>
+
+	  		  <center><h1>Abstract</h1></center>
+			  <tr>
+					As their size increases, Large Languages Models (LLMs) are natural candidates for network pruning methods: approaches that drop a subset of network weights while striving to preserve performance. 
+					Existing methods, however, require either retraining, which is rarely affordable for billion-scale LLMs, or solving a weight reconstruction problem reliant on second-order information, which may also be computationally expensive. 
+					In this paper, we introduce a novel, straightforward yet effective pruning method, termed <b>Wanda (Pruning by Weights and activations)</b>, designed to induce sparsity in pretrained LLMs. Motivated by the recent observation of emergent large magnitude features in LLMs, our approach prunes weights with the smallest magnitudes multiplied by the corresponding input activations, on a per-output basis. Notably, Wanda requires no retraining or weight update, and the pruned LLM can be used as is. We conduct a thorough evaluation of our method Wanda on LLaMA and LLaMA-2 across various language benchmarks. Wanda significantly outperforms the established baseline of magnitude pruning and performs competitively against recent method involving intensive weight update.
+			  <br>
+			  </tr>
+            <br>
+		    <hr>
+
+			<center><h1>Implementation</h1></center>
+<p>Our method Wanda can be implemented in a few lines of PyTorch code:</p>
+<pre style="font-size: 15px;"><code class="language-python"># W: weight matrix (C_out, C_in);
+# X: input matrix (N * L, C_in);
+# s: desired sparsity, between 0 and 1;
+
+def prune(W, X, s):
+&nbsp; &nbsp; metric = W.abs() * X.norm(p=2, dim=0)   # get the Wanda pruning metric
+
+&nbsp; &nbsp; _, sorted_idx = torch.sort(metric, dim=1)   # sort the weights per output
+&nbsp; &nbsp; pruned_idx = sorted_idx[:,:int(C_in * s)]   # get the indices of the weights to be pruned
+&nbsp; &nbsp; W.scatter_(dim=1, index=pruned_idx, src=0)   # get the index of pruned weights
+
+&nbsp; &nbsp; return W</code></pre>
+<p>For details, check out our <a href="https://github.com/locuslab/wanda/tree/main">code repo</a>.</p>
+<hr>
+
+ 		<center><h1>Results</h1></center>
+        We evaluate the zero-shot performance of pruned LLMs. Here we report the mean zero-shot accuracies on 7 common sense reasoning tasks from <a href="https://github.com/EleutherAI/lm-evaluation-harness/tree/master">EleutherAI LM eval harness benchmark</a>, which are described in Section 4.1 of the <a href='https://arxiv.org/abs/2306.11695'>paper</a>.
+        Our method Wanda outperforms the well-established magnitude pruning approach by a large margin, while also competes favorably with prior best method SparseGPT involving intensive weight updates.
+  		<br>
+  		<br>
+  		<table align=center width=700px>
+  	        <td align=center width=700px>
+  				<center>
+			  	    <td><img class="round" style="width:700px" src="zeroshot.png"/></a>
+					</td>
+	  		  	</center>
+	  		</td>
+		  </table>
+		  <br>
+		Wanda consistently finds effective pruned networks across various sparsity levels, without any weight updates. This suggests that LLMs have effective sparse sub-networks that are exact, instead of them merely existing in the neighborhood of the original weights.
+		<br>
+  		<br>
+  		<table align=center width=700px>
+  	        <td align=center width=700px>
+  				<center>
+					<td><img class="round" style="width:700px" src="sparsity_level.png"/></a>
+					</td>
+	  		  	</center>
+	  		</td>
+		</table>
+
+
+		<!-- <br> -->
+
+		<!-- <br>
+          We also evaluate the language modeling ability of pruned LLMs by the perplexity on the WikiText validation dataset. The table below is Table 3 from the <a href='https://arxiv.org/abs/2306.11695'>paper</a> and additional details can be found in Section 4.2.
+		<br>
+  		<br>
+  		<table align=center width=800px>
+  	        <td align=center width=700px>
+  				<center>
+					<td><img class="round" style="width:700px" src="perplexity.png"/></a>
+					</td>
+	  		  	</center>
+	  		</td>
+		</table>
+		<br> -->
+
+		<br>
+		Our analysis shows that the pruning configuration of Wanda delivers the best result among existing pruning metrics and comparison groups.
+		<br>
+		<br>
+		<table align=center width=700px>
+			<td align=center width=700px>
+				<center>
+				  <td><img class="round" style="width:700px" src="analysis.png"/></a>
+				  </td>
+				  </center>
+			</td>
+	  </table>
+
+	  <br>
+	  We find that our method Wanda is more robust and stable with less amount of calibration data.
+	  <br>
+		<br>
+		<table align=center width=500px>
+			<td align=center width=500px>
+				<center>
+				  <td><img class="round" style="width:450px" src="calibration.png"/></a>
+				  </td>
+				  </center>
+			</td>
+	  </table>
+
+        <br>
+        For more results and analysis, please take a look at our full <a href='https://arxiv.org/abs/2306.11695'>paper</a>.
+
+      	  <br>
+		  <hr>
+
+  		  <table align=center width=450px>
+	 		<center><h1>Paper</h1></center>
+  			  <tr>
+				  <td><a href="https://arxiv.org/abs/2306.11695"><img class="layered-paper-big" style="height:175px" src="page.png"/></a></td>
+				  <td><span style="font-size:12pt">M. Sun, Z. Liu, A. Bair, J. Z. Kolter.<br>
+				  <b>A Simple and Effective Pruning Approach for Large Language Models.</b><br>
+				  ArXiv Preprint, 2023. <a href="https://arxiv.org/abs/2306.11695">link</a></a>
+				  <span style="font-size:4pt"><a href=""><br></a>
+				  </span>
+				  </td>
+  	              </td>
+              </tr>
+  		  </table>
+		  <br>
+
+		  <table align=center width=600px>
+			  <tr>
+				  <td><span style="font-size:16pt"><center>
+				  	<a href="bibtext.txt">[Bibtex]</a>
+  	              </center></td>
+              </tr>
+  		  </table>
+  		  <br>
+		  <hr>
+
+			<tr>
+					<left>
+						<center><h1>Acknowledgements</h1></center>
+						We thank Yonghao Zhuang for valuable discussions. This project is insipired from the amazing work of <a href="https://arxiv.org/abs/2301.00774">SparseGPT</a>. We thank the authors for releasing their <a href="https://github.com/IST-DASLab/sparsegpt">code</a>. Mingjie Sun and Anna Bair were supported by the Bosch Center for Artificial Intelligence. We further thank Richard Zhang for his project page template.
+					</left>
+				</td>
+			</tr>
+  		<br>
+		<hr>
+
+		<table align=center width=600px>
+			<tr>
+				<td width=600px>
+					<left>
+						<center><h1>Correspondence</h1></center>
+						<center>mingjies [at] cs [dot] cmu [dot] edu,  zhuangl [at] meta [dot] com</center>
+					</left>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+
+		<script>
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+	
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.display === "block") {
+						content.style.display = "none";
+					} else {
+						content.style.display = "block";
+					}
+				});
+			}
+		</script>
+</body>	
