@@ -1,313 +1,523 @@
-
-<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>
-
-<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
-<style>
-    @import url('https://fonts.cdnfonts.com/css/chalkduster');
-</style>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-<!-- If you need support for additional languages, include them here -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<link href="style.css" rel="stylesheet"/>
-<link href="fontawesome.all.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-<script defer src="fontawesome.all.min.js"></script>
-
-
+<!DOCTYPE html>
 <html>
-  <head>
-		<title>A Simple and Effective Pruning Approach for Large Language Models</title>
-		<meta property="og:title" content="A Simple and Effective Pruning Approach for Large Language Models." />
-
-  </head>
-
-  <body>
-    <br>
-        <center>
-			  <span class="near-black" style="font-size:36px;font-weight:bold">A Simple and Effective Pruning Approach for</span>
-			  <br>
-			  <span class="near-black" style="font-size:36px;font-weight:bold">Large Language Models</span>
-			  <br>
-			  <br>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Continous 3D Words">
+  <meta property="og:title" content="Continuous 3D Words"/>
+  <meta property="og:description" content="Continuous 3D Words"/>
+  <meta property="og:url" content="https://ttchengab.github.io/continuous3Dwords/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="sliders/illum_car_0.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
 
 
-	  		<table align=center width=800px>
-	  			<tr>
-	  	        <td align=center width=150px>
-	  				<center>
-	  					<span style="font-size:24px"><a href="https://eric-mingjie.github.io/">Mingjie Sun</a>*
-						<sup style="font-size: 0.7em;left: -0.3em">1</sup>
-						</span>
-		  			</center>
-		  		</td>
-	  	        <td align=center width=150px>
-	  				<center>
-	  					<span style="font-size:24px"><a href="https://liuzhuang13.github.io/">Zhuang Liu</a>*
-						  <sup style="font-size: 0.7em;left: -0.3em">2</sup>
-						</span>
-		  			</center>
-		  		</td>
-	  	        <td align=center width=150px>
-	  				<center>
-	  					<span style="font-size:24px"><a href="https://annaebair.github.io/">Anna Bair</a>
-						  <sup style="font-size: 0.7em;left: -0.3em">1</sup>
-						</span>
-		  			</center>
-		  		</td>
-                <td align=center width=150px>
-                    <center>
-                        <span style="font-size:24px"><a href="http://zicokolter.com/">J. Zico Kolter</a>
-						<sup style="font-size: 0.7em;left: -0.3em">1,3</sup>
-						</span>
-                    </center>
-                </td>
-			</table>
-			<table align="center" width="600px">
-				<tbody>
-					<tr>
-						<td style="padding:10px">
-							<sup style="padding-right: 3px;font-size: 18px;top: -1.4em;">1</sup><img style="height:40px" src="./webpage_assets/cmu.png">
-						</td>
-						<td style="padding:10px">
-							<sup style="padding-right: 3px;font-size: 18px;top: -1.4em;">2</sup><img style="height:40px" src="./webpage_assets/meta.png">
-						</td>
-						<td style="padding:10px">
-							<sup style="padding-right: 3px;font-size: 18px;top: -1.4em;">3</sup><img style="height:40px" src="./webpage_assets/bosch.png">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-		  <table align="center" width="500px">
-            <tbody>
-                <tr>
-                    <td align="center" width="500px">
-                        <center>
-                            <i><span style="font-size:14px; font-weight: 200">* Equal contribution</span></i>
-                        </center>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table width="800" border="0" align="center" class="menu"
-            style="margin-bottom: 20px;margin-top: 20px;font-weight: bold;font-size: 20px;">
-            <tbody>
-                <tr>
-                    <td align="center">
-						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:26px">
-							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://arxiv.org/abs/2306.11695" target="_blank">
-							<i style="padding-right:2px;font-size:23px" class="fa fa-file-pdf" aria-hidden="true"></i>
-							Paper
-							</a>
-						</span>
-						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:26px">
-							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/locuslab/wanda"" target="_blank">
-							<i style="padding-right:2px;font-size:23px" class="fab fa-github" aria-hidden="true"></i>
-							Code
-							</a>
-						</span>
-						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:26px">
-							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://twitter.com/_mingjiesun/status/1674863399052750848"" target="_blank">
-							<i style="padding-right:2px;font-size:23px" class="fab fa-twitter" aria-hidden="true"></i>
-							Summary
-							</a>
-						</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-	</center>
-		<br>
-
-		  <table align=center width=1000px>
-			<tr>
-				<td align=center width=1300px>
-				  <center>
-					  <img class="round" style="width:1000px" src="wanda.png"/>
-				  </center>
-				</td>
-			</tr>
-		</table>
-
-		<p>
-				Compared to magnitude pruning which removes weights solely based on their magnitudes, our proposed method <b>Wanda (Pruning by Weights and activations)</b> removes weights on a per-output basis, by the product of weight magnitudes and input activation norms.
-		</p>
-	      <hr>
-
-	  		  <center><h1>Abstract</h1></center>
-			  <tr>
-					As their size increases, Large Languages Models (LLMs) are natural candidates for network pruning methods: approaches that drop a subset of network weights while striving to preserve performance. 
-					Existing methods, however, require either retraining, which is rarely affordable for billion-scale LLMs, or solving a weight reconstruction problem reliant on second-order information, which may also be computationally expensive. 
-					In this paper, we introduce a novel, straightforward yet effective pruning method, termed <b>Wanda (Pruning by Weights and activations)</b>, designed to induce sparsity in pretrained LLMs. Motivated by the recent observation of emergent large magnitude features in LLMs, our approach prunes weights with the smallest magnitudes multiplied by the corresponding input activations, on a per-output basis. Notably, Wanda requires no retraining or weight update, and the pruned LLM can be used as is. We conduct a thorough evaluation of our method Wanda on LLaMA and LLaMA-2 across various language benchmarks. Wanda significantly outperforms the established baseline of magnitude pruning and performs competitively against recent method involving intensive weight update.
-			  <br>
-			  </tr>
-            <br>
-		    <hr>
-
-			<center><h1>Implementation</h1></center>
-<p>Our method Wanda can be implemented in a few lines of PyTorch code:</p>
-<pre style="font-size: 15px;"><code class="language-python"># W: weight matrix (C_out, C_in);
-# X: input matrix (N * L, C_in);
-# s: desired sparsity, between 0 and 1;
-
-def prune(W, X, s):
-&nbsp; &nbsp; metric = W.abs() * X.norm(p=2, dim=0)   # get the Wanda pruning metric
-
-&nbsp; &nbsp; _, sorted_idx = torch.sort(metric, dim=1)   # sort the weights per output
-&nbsp; &nbsp; pruned_idx = sorted_idx[:,:int(C_in * s)]   # get the indices of the weights to be pruned
-&nbsp; &nbsp; W.scatter_(dim=1, index=pruned_idx, src=0)   # get the index of pruned weights
-
-&nbsp; &nbsp; return W</code></pre>
-<p>For details, check out our <a href="https://github.com/locuslab/wanda/tree/main">code repo</a>.</p>
-<hr>
-
- 		<center><h1>Results</h1></center>
-        We evaluate the zero-shot performance of pruned LLMs. Here we report the mean zero-shot accuracies on 7 common sense reasoning tasks from <a href="https://github.com/EleutherAI/lm-evaluation-harness/tree/master">EleutherAI LM eval harness benchmark</a>, which are described in Section 4.1 of the <a href='https://arxiv.org/abs/2306.11695'>paper</a>.
-        Our method Wanda outperforms the well-established magnitude pruning approach by a large margin, while also competes favorably with prior best method SparseGPT involving intensive weight updates.
-  		<br>
-  		<br>
-  		<table align=center width=700px>
-  	        <td align=center width=700px>
-  				<center>
-			  	    <td><img class="round" style="width:700px" src="zeroshot.png"/></a>
-					</td>
-	  		  	</center>
-	  		</td>
-		  </table>
-		  <br>
-		Wanda consistently finds effective pruned networks across various sparsity levels, without any weight updates. This suggests that LLMs have effective sparse sub-networks that are exact, instead of them merely existing in the neighborhood of the original weights.
-		<br>
-  		<br>
-  		<table align=center width=700px>
-  	        <td align=center width=700px>
-  				<center>
-					<td><img class="round" style="width:700px" src="sparsity_level.png"/></a>
-					</td>
-	  		  	</center>
-	  		</td>
-		</table>
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG"> -->
+  <!-- <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+  <!-- <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
 
-		<!-- <br> -->
+  <title>DoRA: Weight-Decomposed Low-Rank Adaptation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
 
-		<!-- <br>
-          We also evaluate the language modeling ability of pruned LLMs by the perplexity on the WikiText validation dataset. The table below is Table 3 from the <a href='https://arxiv.org/abs/2306.11695'>paper</a> and additional details can be found in Section 4.2.
-		<br>
-  		<br>
-  		<table align=center width=800px>
-  	        <td align=center width=700px>
-  				<center>
-					<td><img class="round" style="width:700px" src="perplexity.png"/></a>
-					</td>
-	  		  	</center>
-	  		</td>
-		</table>
-		<br> -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 
-		<br>
-		Our analysis shows that the pruning configuration of Wanda delivers the best result among existing pruning metrics and comparison groups.
-		<br>
-		<br>
-		<table align=center width=700px>
-			<td align=center width=700px>
-				<center>
-				  <td><img class="round" style="width:700px" src="analysis.png"/></a>
-				  </td>
-				  </center>
-			</td>
-	  </table>
 
-	  <br>
-	  We find that our method Wanda is more robust and stable with less amount of calibration data.
-	  <br>
-		<br>
-		<table align=center width=500px>
-			<td align=center width=500px>
-				<center>
-				  <td><img class="round" style="width:450px" src="calibration.png"/></a>
-				  </td>
-				  </center>
-			</td>
-	  </table>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
-        <br>
-        For more results and analysis, please take a look at our full <a href='https://arxiv.org/abs/2306.11695'>paper</a>.
+</head>
+<body>
 
-      	  <br>
-		  <hr>
 
-  		  <table align=center width=450px>
-	 		<center><h1>Paper</h1></center>
-  			  <tr>
-				  <td><a href="https://arxiv.org/abs/2306.11695"><img class="layered-paper-big" style="height:175px" src="page.png"/></a></td>
-				  <td><span style="font-size:12pt">M. Sun, Z. Liu, A. Bair, J. Z. Kolter.<br>
-				  <b>A Simple and Effective Pruning Approach for Large Language Models.</b><br>
-				  ArXiv Preprint, 2023. <a href="https://arxiv.org/abs/2306.11695">link</a></a>
-				  <span style="font-size:4pt"><a href=""><br></a>
-				  </span>
-				  </td>
-  	              </td>
-              </tr>
-  		  </table>
-		  <br>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">DoRA: Weight-Decomposed Low-Rank Adaptation</h1>
+              <h2> <font size="+2.5">  </font></h1>
+                <br>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://nbasyl.github.io/" target="_blank">Shih-Yang Liu</a><sup>1,2,*</sup>,</span>
+                <span class="author-block">
+                  <a href="https://chienyiwang.github.io/" target="_blank">Chien-Yi Wang</a><sup>1</sup>,</span>
+                    <span class="author-block">
+                      <a href="https://hongxu-yin.github.io/" target="_blank">Hongxu Yin</a><sup>1</sup>,</span>
+                      <span class="author-block">
+                        <a href="https://www.pmolchanov.com/" target="_blank">Pavlo Molchanov</a><sup>1</sup>,</span>
+                    </br>
+                      <span class="author-block">
+                        <a href="http://vllab.ee.ntu.edu.tw/ycwang.html" target="_blank">Yu-Chiang Frank Wang</a><sup>1</sup>,</span>
+                        <span class="author-block">
+                          <a href="https://seng.hkust.edu.hk/about/people/faculty/tim-kwang-ting-cheng" target="_blank">Kwang-Ting Cheng</a><sup>2</sup>,</span>
+                          <span class="author-block">
+                            <a href="https://minhungchen.netlify.app/" target="_blank">Min-Hung Chen</a><sup>1</sup>
+                  </span>
+                  </div>
 
-		  <table align=center width=600px>
-			  <tr>
-				  <td><span style="font-size:16pt"><center>
-				  	<a href="bibtext.txt">[Bibtex]</a>
-  	              </center></td>
-              </tr>
-  		  </table>
-  		  <br>
-		  <hr>
 
-			<tr>
-					<left>
-						<center><h1>Acknowledgements</h1></center>
-						We thank Yonghao Zhuang for valuable discussions. This project is insipired from the amazing work of <a href="https://arxiv.org/abs/2301.00774">SparseGPT</a>. We thank the authors for releasing their <a href="https://github.com/IST-DASLab/sparsegpt">code</a>. Mingjie Sun and Anna Bair were supported by the Bosch Center for Artificial Intelligence. We further thank Richard Zhang for his project page template.
-					</left>
-				</td>
-			</tr>
-  		<br>
-		<hr>
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>NVIDIA Research<br><sup>2</sup>HKUST</span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Work done during internship at NVIDIA Research</small></span>
+                  </div>
 
-		<table align=center width=600px>
-			<tr>
-				<td width=600px>
-					<left>
-						<center><h1>Correspondence</h1></center>
-						<center>mingjies [at] cs [dot] cmu [dot] edu,  zhuangl [at] meta [dot] com</center>
-					</left>
-				</td>
-			</tr>
-		</table>
-		<br>
-		<br>
 
-		<script>
-			var coll = document.getElementsByClassName("collapsible");
-			var i;
-	
-			for (i = 0; i < coll.length; i++) {
-				coll[i].addEventListener("click", function() {
-					this.classList.toggle("active");
-					var content = this.nextElementSibling;
-					if (content.style.display === "block") {
-						content.style.display = "none";
-					} else {
-						content.style.display = "block";
-					}
-				});
-			}
-		</script>
-</body>	
+                  <div class="column has-text-centered">
+
+                    <!-- Supplementary PDF link -->
+                    <!-- <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2402.09353" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                  <span class="link-block">
+                    <a href="https://github.com/nbasyl/DoRA" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%"> -->
+        <!-- Your video here -->
+        <!-- <source src="static/videos/banner_video.mp4"
+        type="video/mp4"> -->
+        <!-- <video controls autoplay muted loop>
+            <source src="static/videos/teaser_vid.mp4" type="video/mp4">
+          </video> -->
+          <div class="columns is-centered has-text-centered">
+            <img src="static/results/rank_sensitiviy_webpage.png"/>
+          </div>
+          <!-- <video controls loop>
+            <source src="static/images/teaser_vid.mov">
+            Your browser does not support the video tag.
+          </video> -->
+      <!-- </video> -->
+      <br>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        DoRA consistently outperforms LoRA at all rank settings for commonsense reasoning tasks, with the performance gap
+        widening as the rank decreases.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Among the widely used parameter-efficient finetuning (PEFT) methods, LoRA and its variants
+            have gained considerable popularity because of
+            avoiding additional inference costs. However,
+            there still often exists an accuracy gap between
+            these methods and full fine-tuning (FT). In this
+            work, we first introduce a novel weight decomposition analysis to investigate the inherent differences between FT and LoRA. Aiming to resemble the learning capacity of FT from the
+            findings, we propose Weight-Decomposed LowRank Adaptation (DoRA). DoRA decomposes
+            the pre-trained weight into two components, magnitude and direction, for fine-tuning, specifically
+            employing LoRA for directional updates to efficiently minimize the number of trainable parameters. By employing DoRA, we enhance both
+            the learning capacity and training stability of
+            LoRA while avoiding any additional inference
+            overhead. DoRA consistently outperforms LoRA
+            on fine-tuning LLaMA, LLaVA, and VL-BART
+            on various downstream tasks, such as commonsense reasoning, visual instruction tuning, and
+            image/video-text understanding.          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Image carousel -->
+
+<!-- End image carousel -->
+
+
+<!-- Youtube video -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Method Overview</h2>
+      </div>
+      
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+
+          <!-- <div class="publication-video"> -->
+            <!-- Youtube embed code here -->
+            <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+           -->
+           <img src="static/images/dora.png" alt="Method Overview"/>
+           <br>
+           <br>
+           <div class="columns is-centered has-text-centered">
+             <p>
+              An overview of our proposed DoRA, which decomposes
+              the pre-trained weight into magnitude and direction components
+              for fine-tuning, especially with LoRA to efficiently update the
+              direction component.             </p>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<!-- Youtube video -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Results</h2>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <!-- <div class="publication-video"> -->
+            <!-- Youtube embed code here -->
+            <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+           -->
+           <h3 class="title is-4">Finetuning LLaMA-7B for the commonsense reasoning tasks</h3>
+
+               <!-- Illumination Row -->
+               <div class="columns is-centered">
+                <img src="static/results/commonsense.png"/>
+               </div>
+
+          <br>
+          <br>
+
+          <h3 class="title is-4">Instruction tuning LLaMA-7B and LLaMA2-7B with cleaned Alpaca dataset.</h3>
+              <!-- Illumination Row -->
+              <div class="columns is-centered">
+                <img src="static/results/dvora.png" width="600"/>
+              </div>
+          
+          <br>
+          <br>
+          <h3 class="title is-4">Finetuning VL-BART for the image/video-text understanding tasks</h3>
+
+              <!-- Illumination Row -->
+              <div class="columns is-centered">
+               <img src="static/results/vlbart1.png" width="800"/>
+              </div>
+              <div class="columns is-centered">
+                <img src="static/results/vlbart2.png" width="800"/>
+               </div>
+
+          <br><br>
+
+          <h3 class="title is-4">Visual instruction tuning (LLaVA-1.5-7B)</h3>
+
+              <!-- Illumination Row -->
+              <div class="columns is-centered">
+                <img src="static/results/llava.png" width="1000"/>
+              </div>
+    
+
+
+           <script>
+               // JavaScript code will go here
+               // Function to update the image source
+           function updateImage(sliderId, imageId, baseName) {
+               // illumination_strings = ["taxis_", "lions_8_", "car_10_", "tiger_10_", "table_10_"]
+               // var sliderValue = 0;
+               // console.log(baseName)
+               // if(illumination_strings.includes(baseName)){
+                 // /sliderValue = 14 + 27 - document.getElementById(sliderId).value;
+               // }/
+               // else if(baseName=="vacuum_10_"){
+                 // sliderValue = 16 + 27 - document.getElementById(sliderId).value;
+               // }
+               // else{
+                 sliderValue = document.getElementById(sliderId).value;
+               // }
+               // if(baseName.includes(dollyzoom))
+               var newImagePath = "sliders/" + baseName + sliderValue + ".png";
+               // console.log(newImagePath) // Adjust this path as per your images
+
+
+               document.getElementById(imageId).src = newImagePath;
+           }
+
+           // Attach event listeners to each slider
+
+           function updateMultiConceptImage(baseId, baseName) {
+               var sliderValueA = document.getElementById(baseId + "a").value;
+
+               illumination_strings = ["horses", "bear"]
+               var sliderValueB = 0;
+               // console.log(baseName)
+               if(illumination_strings.includes(baseName)){
+                 sliderValueB = 14 + 27 - document.getElementById(baseId + "b").value;
+               }
+               else{
+                 sliderValueB = document.getElementById(baseId + "b").value;
+               }
+
+               // var sliderValueB = document.getElementById(baseId + "b").value;
+               var newImagePath = "supp/" + baseName + "_" + sliderValueA + "_" + sliderValueB + ".png";
+               // console.log("image-" + baseId) // Adjust this path as per your images
+               document.getElementById("image-" + baseName).src = newImagePath;
+           }
+
+           function attachMultiConceptSliderEvents(baseId, baseName) {
+               var sliderA = document.getElementById("slider-" + baseId + "a");
+               var sliderB = document.getElementById("slider-" + baseId + "b");
+
+               sliderA.addEventListener("input", function() {
+                   updateMultiConceptImage("slider-" + baseId, baseName);
+               });
+
+               sliderB.addEventListener("input", function() {
+                   updateMultiConceptImage("slider-" + baseId, baseName);
+               });
+           }
+           function attachSliderEvents() {
+               var sliders = ["illum_car", "illum_hippo", "illum_toaster",
+                              "run_fox", "run_squirrel", "wing_owl", "wing_colorbird",
+                              "dollychair1", "dollychair2"];
+
+               sliders.forEach(function(slider) {
+                   document.getElementById("slider-" + slider).addEventListener("input", function() {
+                       updateImage("slider-" + slider, "image-" + slider, slider + "_");
+                   });
+               });
+
+               // attachMultiConceptSliderEvents("horses", "horses");
+               attachMultiConceptSliderEvents("bear", "bear");
+               attachMultiConceptSliderEvents("seagull", "seagull");
+           }
+           document.addEventListener("DOMContentLoaded", attachSliderEvents);
+
+           // Initialize the sliders once the window is loaded
+           window.onload = attachSliderEvents;
+
+           </script>
+
+
+          <!-- </div> -->
+        </div>
+        <!-- <div class="column is-four-fifths">
+          <img src="static/images/results.pdf" alt="3DMiner Overview"/>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<div class="container is-max-desktop content">
+  <div class="columns is-centered has-text-centered"><h2 class="title">Implementation of DoRA compared to LoRA in PyTorch-like code</h2></div>
+  
+  <pre><code class="python">
+  ## LoRA forward pass
+  def forward(self, x: torch.Tensor):
+    base_result = F.linear(x, transpose(self.weight, self.fan_in_fan_out), bias=self.bias)
+    dropout_x = self.lora_dropout(x)
+
+    result += (self.lora_B(self.lora_A(dropout_x.to(self.lora_A.weight.dtype)))) * self.scaling
+    return result
+
+  ## DoRA forward pass
+  def forward(self, x: torch.Tensor):
+    base_result = F.linear(x, transpose(self.weight, self.fan_in_fan_out))
+    dropout_x = self.lora_dropout(x)
+
+    new_weight_v = self.weight + (self.lora_B.weight @ self.lora_A.weight) * self.scaling
+    norm_scale = self.weight_m_wdecomp.weight.view(-1) / (torch.linalg.norm(new_weight_v,dim=1)).detach()
+    result = base_result + (norm_scale-1) * (F.linear(dropout_x, transpose(self.weight, self.fan_in_fan_out)))
+    result += ( norm_scale * (self.lora_B(self.lora_A(dropout_x.to(self.lora_A.weight.dtype))))) * self.scaling
+    if not self.bias is None:
+      result += self.bias.view(1, -1).expand_as(result)
+    return result
+  </code></pre>
+</div>                
+
+<div class="columns is-centered has-text-centered"><h2 class="title">Quick Start with Hugging Face PEFT and Diffusers</h2></div>
+<br>
+<div class="columns is-centered has-text-centered"><h3 class="title">Hugging Face PEFT</h3></div>
+<br>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">DoRA is now supported by the Huggingface PEFT package. You can install the PEFT package using</font></div></div>
+<br>
+<div class="columns is-centered has-text-centered"><pre><code>pip install git+https://github.com/huggingface/peft.git -q</code></pre></div>
+<br>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">After PEFT is installed, you can simply set the use_dora argument of LoRAConfig to True for applying DoRA. An example could be as follows:</font></div></div>
+<br>
+
+<div class="container is-max-desktop content">  
+  <pre><code class="python">
+    from peft import LoraConfig, get_peft_model
+
+    # Initialize DoRA configuration
+    config = LoraConfig(
+        r=8, 
+        lora_alpha=16, 
+        target_modules=[
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj",
+        ],
+        lora_dropout=0.1,
+        bias="none",
+        task_type="CAUSAL_LM",
+        use_dora=True
+    )
+  </code></pre>
+</div>      
+<br>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">Please refer to the <a href="https://huggingface.co/docs/peft/en/developer_guides/lora#weight-decomposed-low-rank-adaptation-dora" target="_blank">official documentation</a> for more details.</font></div></div>
+<br>  
+<div class="columns is-centered has-text-centered"><h3 class="title">Hugging Face Diffusers</h3></div>
+<br>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">You can also toy with DoRA on finetuning Diffusion Model. See <a href="https://github.com/huggingface/diffusers/tree/main/examples/advanced_diffusion_training#dora-training" target="_blank">huggingface/diffusers</a>. Another good tutorial would be this <a href="https://colab.research.google.com/drive/134mt7bCMKtCYyYzETfEGKXT1J6J50ydT?usp=sharing#scrollTo=23d6bb49-3469-4e23-baf5-25b2344b599d" target="_blank">collab notebook</a> from <a href="https://twitter.com/linoy_tsaban" target="_blank">Linoy Tsaban</a>.</font></div></div>
+<br>
+
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><h3 class="title is-4">Some DoRA v.s LoRA diffusion finetuning results</h3></div></div>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">Example From <a href="https://twitter.com/linoy_tsaban" target="_blank">Linoy Tsaban</a> (Images generated by DoRA are on the left and LoRA on the right):</font></div></div>
+<br>  
+<!-- Illumination Row -->
+<div class="columns is-centered">
+  <img src="static/results/dora_lora_yoda_emoji.jpg" width="1000"/>
+</div>
+<br>  
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">Example From <a href="https://twitter.com/mervenoyann" target="_blank">merve</a></font></div></div>
+<br>
+<div class="columns is-centered">
+  <img src="static/results/dora_lora_lego.jpeg" width="1000"/>
+</div>
+<br>
+<br>
+<!-- <br>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">In general DoRA finetuning on diffusion model is still experimental and is likely to require <strong>different hyperparameter values</strong> to perform best compared to LoRA.
+  <br>
+  <br>
+  Specifically, people have noticed 2 differences to take into account your training:
+  <ul>
+    <li>LoRA seem to converge faster than DoRA (so a set of parameters that may lead to overfitting when training a LoRA may be working well for a DoRA)</li>
+    <li>DoRA quality superior to LoRA especially in lower ranks the difference in quality of DoRA of rank 8 and LoRA of rank 8 appears to be more significant than when training ranks of 32 or 64 for example.
+    </li>
+  </ul>
+  </font></div></div>
+<br> -->
+
+
+<!--BibTex citation -->
+<div class="columns is-centered has-text-centered"><h2 class="title">BibTeX</h2></div>
+    <div class="container is-max-desktop content">
+
+      <pre><code>@article{liu2024dora,
+        title={DoRA: Weight-Decomposed Low-Rank Adaptation},
+        author={Liu, Shih-Yang and Wang, Chien-Yi and Yin, Hongxu and Molchanov, Pavlo and Wang, Yu-Chiang Frank and Cheng, Kwang-Ting and Chen, Min-Hung},
+        journal={arXiv preprint arXiv:2402.09353},
+        year={2024}
+      }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
