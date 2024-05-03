@@ -147,7 +147,7 @@
             <source src="static/videos/teaser_vid.mp4" type="video/mp4">
           </video> -->
           <div class="columns is-centered has-text-centered">
-            <img src="static/results/rank_sensitiviy_webpage.png"/>
+            <img src="static/results/dora_llama123-1.png" width="70%"/>
           </div>
           <!-- <video controls loop>
             <source src="static/images/teaser_vid.mov">
@@ -157,8 +157,7 @@
       <br>
       <br>
       <h2 class="subtitle has-text-centered">
-        DoRA consistently outperforms LoRA at all rank settings for commonsense reasoning tasks, with the performance gap
-        widening as the rank decreases.
+        DoRA consistently outperforms LoRA on the LLaMA family models for commonsense reasoning tasks.
       </h2>
     </div>
   </div>
@@ -250,11 +249,11 @@
             <!-- Youtube embed code here -->
             <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
            -->
-           <h3 class="title is-4">Finetuning LLaMA-7B for the commonsense reasoning tasks</h3>
+           <h3 class="title is-4">Finetuning LLaMA-7B/13B, LLaMA2-7B and LLaMA3-8B for the commonsense reasoning tasks</h3>
 
                <!-- Illumination Row -->
                <div class="columns is-centered">
-                <img src="static/results/commonsense.png"/>
+                <img src="static/results/commonsense_results.png" width="100%"/>
                </div>
 
           <br>
@@ -263,7 +262,7 @@
           <h3 class="title is-4">Instruction tuning LLaMA-7B and LLaMA2-7B with cleaned Alpaca dataset.</h3>
               <!-- Illumination Row -->
               <div class="columns is-centered">
-                <img src="static/results/dvora.png" width="600"/>
+                <img src="static/results/dvora.png" width="60%"/>
               </div>
           
           <br>
@@ -272,10 +271,10 @@
 
               <!-- Illumination Row -->
               <div class="columns is-centered">
-               <img src="static/results/vlbart1.png" width="800"/>
+               <img src="static/results/vlbart1.png" width="90%"/>
               </div>
               <div class="columns is-centered">
-                <img src="static/results/vlbart2.png" width="800"/>
+                <img src="static/results/vlbart2.png" width="90%"/>
                </div>
 
           <br><br>
@@ -284,10 +283,16 @@
 
               <!-- Illumination Row -->
               <div class="columns is-centered">
-                <img src="static/results/llava.png" width="1000"/>
+                <img src="static/results/llava.png" width="90%"/>
               </div>
     
 
+              <h3 class="title is-4">QDoRA vs. QLoRA vs. FT</h3>
+
+              <!-- Illumination Row -->
+              <div class="columns is-centered">
+                <img src="static/results/Qdora.png" width="100%"/>
+              </div>
 
            <script>
                // JavaScript code will go here
@@ -407,7 +412,15 @@
     return result
   </code></pre>
 </div>                
+<div class="columns is-centered has-text-centered"><h2 class="title">Quick Start with FSDP/QDoRA from Answer.AI</h2></div>
+<br>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">QDoRA + Fully Sharded Data Parallel(FSDP) is now supported by Answer.AI </font></div></div>
 
+
+<div class="columns is-centered has-text-centered"><pre><code>git clone https://github.com/AnswerDotAI/fsdp_qlora</code></pre></div>
+<div class="columns is-centered has-text-centered"><div class="container is-max-desktop content"><font size="+1">Start finetuning LLMs on consumer GPUs!</font></div></div>
+
+<br>
 <div class="columns is-centered has-text-centered"><h2 class="title">Quick Start with Hugging Face PEFT and Diffusers</h2></div>
 <br>
 <div class="columns is-centered has-text-centered"><h3 class="title">Hugging Face PEFT</h3></div>
@@ -425,21 +438,9 @@
 
     # Initialize DoRA configuration
     config = LoraConfig(
-        r=8, 
-        lora_alpha=16, 
-        target_modules=[
-          "q_proj",
-          "k_proj",
-          "v_proj",
-          "o_proj",
-          "gate_proj",
-          "up_proj",
-          "down_proj",
-        ],
-        lora_dropout=0.1,
-        bias="none",
-        task_type="CAUSAL_LM",
+        ...
         use_dora=True
+        ...
     )
   </code></pre>
 </div>      
